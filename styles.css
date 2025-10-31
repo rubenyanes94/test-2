@@ -1,0 +1,220 @@
+
+:root {
+    --primary-color: #4F46E5; 
+    --secondary-color: #6B7280; 
+    --text-color: #1F2937; 
+    --bg-color-light: #F9FAFB;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color-light);
+}
+
+.task-item {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #E5E7EB;
+}
+.task-completed .task-text {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+.task-completed .btn-outline-danger {
+    visibility: hidden;
+}
+
+
+.calendar-grid {
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 0; 
+    text-align: center;
+    border: 1px solid #E5E7EB; 
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.day-name {
+    padding: 8px 4px;
+    font-size: 0.75rem; 
+    font-weight: 600;
+    color: var(--secondary-color);
+    background-color: #F3F4F6; 
+    border-bottom: 1px solid #E5E7EB;
+    border-right: 1px solid #E5E7EB;
+}
+.day-name:last-child {
+    border-right: none;
+}
+
+.calendar-day {
+    min-height: 80px; 
+    padding: 8px 4px 4px 4px; 
+    font-size: 0.875rem;
+    cursor: pointer;
+    border-right: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
+    text-align: right;
+    position: relative;
+    transition: background-color 0.1s;
+}
+
+.calendar-grid .calendar-day:nth-child(7n) { 
+    border-right: none;
+}
+
+.calendar-grid .calendar-day:nth-last-child(-n + 7) {
+    border-bottom: none;
+}
+
+
+.calendar-day:hover {
+    background-color: #F3F4F6;
+}
+
+
+.empty-day {
+    background-color: #FAFAFA;
+    cursor: default;
+}
+.text-muted { 
+    color: #9CA3AF !important;
+}
+
+.today {
+    border: 2px solid var(--primary-color) !important;
+    font-weight: bold;
+    color: var(--primary-color);
+    z-index: 10;
+}
+
+.selected {
+    background-color: #E0E7FF; 
+    font-weight: 600;
+    color: var(--primary-color);
+    border: 1px solid #A5B4FC !important; 
+    border-bottom: none;
+}
+
+.has-tasks::after {
+    content: '•';
+    color: #10B981; /* Verde */
+    font-size: 1.5rem;
+    line-height: 0;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.calendar-week-grid, .calendar-day-grid {
+    display: grid;
+    grid-template-columns: 50px repeat(7, 1fr); 
+    grid-auto-rows: 40px; 
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    overflow-y: scroll; 
+    max-height: 70vh; 
+    position: relative; 
+}
+
+.calendar-day-grid {
+    grid-template-columns: 50px 1fr; 
+}
+
+.time-slot-header {
+    grid-column: 1 / 2;
+    padding: 8px 4px;
+    font-weight: 600;
+    background-color: #F3F4F6;
+    border-bottom: 1px solid #E5E7EB;
+    text-align: center;
+    font-size: 0.75rem;
+    position: sticky; 
+    top: 0;
+    z-index: 20;
+}
+
+.day-header {
+    padding: 8px;
+    background-color: #F3F4F6;
+    border-right: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
+    text-align: center;
+    font-size: 0.85rem;
+    position: sticky; 
+    top: 0;
+    z-index: 20;
+}
+.calendar-week-grid .day-header:last-child {
+    border-right: none;
+}
+
+.time-slot {
+    border-right: 1px solid #E5E7EB;
+    border-bottom: 1px dotted #E5E7EB; 
+    min-height: 40px;
+    font-size: 0.75rem;
+    position: relative;
+}
+.calendar-week-grid .time-slot:nth-child(8n) {
+    border-right: none;
+}
+.calendar-day-grid .time-slot:last-child {
+    border-right: none;
+}
+
+
+.time-slot.hour-label {
+    grid-column: 1 / 2;
+    background-color: #FAFAFA;
+    text-align: right;
+    font-weight: 500;
+    color: #9CA3AF;
+    padding-right: 5px;
+    border-right: 1px solid #E5E7EB;
+    border-bottom: 1px dotted #E5E7EB;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-top: -8px; 
+}
+.calendar-week-grid .time-slot.hour-label:last-of-type {
+    margin-top: 0;
+}
+
+
+
+.task-block-event {
+   
+    grid-column: auto; 
+    grid-row: auto; 
+    
+  
+    width: calc(100% - 2px); 
+    height: 38px; 
+    z-index: 50;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: grab;
+    line-height: 1.2;
+    padding: 2px 4px !important; 
+    font-size: 0.75rem;
+    font-weight: 500;
+
+   
+    position: absolute; 
+    left: 1px;
+    top: 0;
+    margin-top: 0 !important; 
+}
+
+
+.task-block-event.bg-info {
+    background-color: #38BDF8 !important; 
+    color: white;
+    border-radius: 4px;
+}
